@@ -2,6 +2,8 @@ window.onload = function() {
     var stage = document.getElementById('stage');
     var ctx = stage.getContext('2d');
     document.addEventListener('keydown', keyPush);
+    var scoreTxt = document.getElementById('score');
+    var score = 0;
   
     setInterval(game, 60);
   
@@ -22,7 +24,8 @@ window.onload = function() {
     function game() {
   	    posx += velx;
         posy += vely;
-    
+        
+        //se a cobra passar das bordas ela vai voltar no outro lado
         if(posx < 0) {
     	    posx = quantPeca - 1;
         }
@@ -35,7 +38,7 @@ window.onload = function() {
         if(posy > quantPeca-1) {
     	    posy = 0;
         }
-    
+
   	    ctx.fillStyle = "black";
   	    ctx.fillRect(0, 0, stage.width, stage.height);
     
@@ -45,10 +48,14 @@ window.onload = function() {
         ctx.fillStyle = "green";
    	    for (var i = 0; i < rastro.length; i++) {
     	    ctx.fillRect(rastro[i].x*tamPeca, rastro[i].y*tamPeca, tamPeca-1, tamPeca-1);
+
+            //para a cobra morrer quando bater nela msm
             if (rastro[i].x == posx && rastro[i].y == posy) {
-      	        velx = 0; 
+      	        velx = 0;
                 vely = 0;
                 cauda = 5;
+                score = 0; //deixar o score em 0
+                scoreTxt.innerHTML = `Pontuação: ${Number(score)}`;
             }
         }
     
@@ -56,14 +63,20 @@ window.onload = function() {
         while (rastro.length > cauda) {
     	rastro.shift();
         }
+
+        //se a maçã tiver na mesma posicao que a cabeca da cobra
         if (applex == posx && appley == posy) {
-			cauda++;
+			cauda++; //aumentar a cauda da cobra
+            score++; //aumentar 1 cada vez que ela pegar a maçã
+            scoreTxt.innerHTML = `Pontuação: ${Number(score)}`;
+            //fazer a maçã aparecer em lugares aleatorios
             applex = Math.floor(Math.random()*quantPeca);
             appley = Math.floor(Math.random()*quantPeca);
         }
     
     }
-  
+    
+    //funcao para as teclas
     function keyPush(event) {
   	
   	    switch (event.keyCode) {
