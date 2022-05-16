@@ -55,7 +55,7 @@ window.onload = function() {
                 vely = 0;
                 cauda = 5;
                 score = 0; //deixar o score em 0
-                scoreTxt.innerHTML = `Pontuação: ${Number(score)}`;
+                scoreTxt.innerHTML = `Pontuação: ${score}`;
             }
         }
     
@@ -68,7 +68,7 @@ window.onload = function() {
         if (applex == posx && appley == posy) {
 			cauda++; //aumentar a cauda da cobra
             score++; //aumentar 1 cada vez que ela pegar a maçã
-            scoreTxt.innerHTML = `Pontuação: ${Number(score)}`;
+            scoreTxt.innerHTML = `Pontuação: ${score}`;
             //fazer a maçã aparecer em lugares aleatorios
             applex = Math.floor(Math.random()*quantPeca);
             appley = Math.floor(Math.random()*quantPeca);
