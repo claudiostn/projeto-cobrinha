@@ -11,24 +11,3 @@ main {
     align-items: center;
 }
 
-.titulo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%px;
-    height: 50px;
-    font: bold 2.5em sans-serif;
-    margin-bottom: 5px;
-}
-.fundo {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    background: rgb(87, 153, 240);
-    width: 450px;
-    height: 500px;
-    align-items: center;
-    justify-content: space-evenly;
-    box-shadow: 3px 3px 2px black;
-}
-
